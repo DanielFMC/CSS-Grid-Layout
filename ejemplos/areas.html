@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Areas</title>
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .container {
+            display: grid;
+            grid-template: 100px 1fr 100px / 300px 3fr 1fr;
+            grid-gap: 10px;
+            height: 100vh;
+            grid-template-areas: "header header header"
+                "left contenido aside"
+                "footer footer footer";
+        }
+
+        .item {
+            background: lightblue;
+            padding: 10px;
+            border: 1px solid red;
+        }
+
+        .item:nth-of-type(4) {
+            /*Este pseudoelemento toma el elemento numero 4 con clase .item*/
+            background-color: green;
+            overflow: auto;
+            display: grid;
+            grid-template: 50px 100px / 33% 33% 33%;
+        }
+
+        .item .item {
+            background-color: yellow;
+        }
+
+        .header {
+            grid-area: header;
+        }
+
+        .left {
+            grid-area: left;
+        }
+
+        .contenido {
+            grid-area: contenido;
+        }
+
+        .aside {
+            grid-area: aside;
+        }
+
+        .footer {
+            grid-area: footer;
+        }
+    </style>
+</head>
+
+<body>
+    <section class="container">
+        <div class="item header">Header</div>
+        <div class="item left">Left</div>
+        <div class="item contenido">Contenido</div>
+        <div class="item aside">Aside</div>
+        <div class="item footer">Footer</div>
+    </section>
+</body>
+
+</html>

@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram</title>
+    <script src="https://kit.fontawesome.com/efe15c9ec8.js" crossorigin="anonymous"></script>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@100;200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="shortcut icon" href="./assets/favicon.png" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; */
+            font-family: 'IBM Plex Sans', sans-serif;
+            box-sizing: border-box;
+            font-size: 16px;
+        }
+
+        /* --- NAVBAR ---- */
+
+        .navbar {
+            border-bottom: 1px solid #dbdbdb;
+            height: 54px;
+        }
+
+        .navbar-content {
+            width: 69.2%;
+            height: inherit;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+        }
+
+        .logo a {
+            display: flex;
+            align-content: center;
+        }
+
+        .search {
+            display: flex;
+            justify-self: center;
+        }
+
+        .search button i {
+            font-size: 10px;
+            padding-right: 6px;
+        }
+
+        .search button {
+            width: 215px;
+            background-color: transparent;
+            border: 1px solid #dbdbdb;
+            padding: 5px;
+            font-size: 14px;
+            color: #a8a8a8;
+            border-radius: 3px;
+            cursor: text;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .menu {
+            justify-self: end;
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-gap: 22px;
+        }
+
+        .menu-img {
+            width: 22px;
+            height: 22px;
+        }
+
+        .menu-img.home {
+            background-image: url("./assets/home.png");
+        }
+
+        .menu-img.dm {
+            background-image: url("./assets/dm.png");
+            width: 22px;
+            height: 22px;
+        }
+
+        .menu-img.explore {
+            background-image: url("./assets/explore.png");
+        }
+
+        .menu-img.activity {
+            background-image: url("./assets/activity.png");
+        }
+
+        .menu-img.profile {
+            background-image: url("./assets/profile1.jpg");
+            border-radius: 100px;
+        }
+
+        /* --- HEADER --- */
+
+        .header-content {
+            border-bottom: 1px solid #dbdbdb;
+            width: 69.2%;
+            margin: 30px auto;
+            margin-bottom: 0;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            padding-bottom: 45px;
+        }
+
+        .profile-img {
+            grid-column: span 1;
+            justify-items: center;
+        }
+
+        .profile-img figure {
+            margin: 0;
+            display: grid;
+            justify-items: center;
+            align-content: start;
+        }
+
+        .profile-img figure img {
+            border-radius: 100px;
+            cursor: pointer;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+        }
+
+        .profile-info-user {
+            display: flex;
+            align-items: flex-start;
+            justify-content: flex-start;
+        }
+
+        .profile-info-user h2 {
+            margin-top: 0px;
+            margin-bottom: 15px;
+            font-weight: 400;
+            font-size: 1.75rem;
+            letter-spacing: -0.037em;
+        }
+
+        .profile-info-user a {
+            width: 80px;
+            text-decoration: none;
+            color: black;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            padding: 5px 9px;
+            margin-left: 20px;
+        }
+
+        .profile-info-user figure {
+            width: 24px;
+            height: 24px;
+            margin: 0px;
+            margin-left: 10px;
+            padding: 4px;
+            cursor: pointer;
+        }
+
+        .profile-info-edit a {
+            display: none;
+            text-decoration: none;
+            color: black;
+            font-size: 0.875rem;
+            font-weight: 500;
+            border: 1px solid #dbdbdb;
+            border-radius: 4px;
+            padding: 5px 9px;
+            text-align: center;
+        }
+
+        .profile-info-follows {
+            margin-bottom: 20px;
+        }
+
+        .profile-info-follows ul {
+            display: flex;
+            justify-content: flex-start;
+            padding: 0;
+            margin: 0;
+        }
+
+        .profile-info-follows ul li {
+            list-style: none;
+            margin-right: 30px;
+        }
+
+        .profile-info-follows ul li:last-child {
+            margin-right: 0;
+        }
+
+        .profile-info-follows ul li span {
+            font-weight: 600;
+        }
+
+        .profile-info-follows ul li a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .profile-info-description {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .profile-info-description h1 {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .profile-info-description span {
+            line-height: 24px;
+        }
+
+        .header-responsive {
+            display: none;
+        }
+
+        /* --- SECTIONS --- */
+
+        .sections {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 69.2%;
+            height: 53px;
+            margin: 0 auto;
+        }
+
+        .sections a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            margin-right: 60px;
+        }
+
+        .sections a:last-child {
+            margin-right: 0;
+        }
+
+        .sections-icon img {
+            width: 12px;
+            height: 12px;
+        }
+
+        .sections-text {
+            font-size: 12px;
+            letter-spacing: 1px;
+            font-weight: 700;
+            text-decoration: none;
+            color: #a8a8a8;
+            margin-left: 7px;
+        }
+
+        /* --- POSTS --- */
+
+        .post-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(100px, 293px));
+            justify-content: center;
+            grid-gap: 28px;
+        }
+
+        .post {
+            cursor: pointer;
+            position: relative;
+            display: block;
+        }
+
+        .post-image {
+            margin: 0;
+        }
+
+        .post-image img {
+            width: 100%;
+            vertical-align: top;
+        }
+
+        .post-overlay {
+            background-color: rgba(0, 0, 0, 0.4);
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-align: center;
+        }
+
+        .post:hover .post-overlay {
+            display: flex;
+        }
+
+        .post-likes,
+        .post-comments {
+            width: 80px;
+            margin: 5px;
+            font-weight: bold;
+            text-align: center;
+            display: inline-block;
+        }
+
+        /* --- FOOTER --- */
+
+        .footer-section {
+            padding: 40px 0px;
+            display: flex;
+            flex-direction: column;
+            width: 73%;
+            margin: 0px auto;
+        }
+
+        .footer-section ul {
+            padding: 0;
+            display: flex;
+            list-style: none;
+            margin: 0 0 10px 0;
+        }
+
+        .footer-section ul li a {
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            color: #003773;
+            margin-right: 16px;
+        }
+
+        .footer-section span {
+            display: flex;
+            font-size: 12px;
+            font-weight: 600;
+            color: #a8a8a8;
+        }
+
+        /* --- RESPONSIVE --- */
+
+        @media screen and (max-width: 768px) {
+
+            body {
+                font-size: 14px;
+            }
+
+            .navbar-content {
+                width: 100%;
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .logo {
+                padding-left: 20px;
+            }
+
+            .search {
+                display: none;
+            }
+
+            .menu {
+                padding-right: 20px;
+            }
+
+            .header-content {
+                width: 100%;
+                grid-template-columns: 1fr 6fr;
+                padding-bottom: 20px;
+            }
+
+            .profile-img figure {
+                display: flex;
+                justify-content: left;
+                margin-left: 20px;
+            }
+
+            .profile-info {
+                margin: 0;
+                padding-right: 20px;
+                margin-left: 30px;
+            }
+
+            .profile-img figure img {
+                width: 77px;
+                height: 77px;
+            }
+
+            .profile-info-user a {
+                display: none;
+            }
+
+            .profile-info-edit a {
+                display: block;
+            }
+
+            .profile-info-follows {
+                display: none;
+            }
+
+            .profile-info-description {
+                margin-top: 20px;
+                margin-left: -115px;
+            }
+
+            .profile-info-description span {
+                line-height: 20px;
+            }
+
+            .sections {
+                width: 100%;
+                justify-content: space-around;
+            }
+
+            .sections a {
+                width: 25%;
+                margin: 0;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+            }
+
+            .sections-text {
+                display: none;
+            }
+
+            .sections-icon img {
+                width: 24px;
+                height: 24px;
+            }
+
+            .header-responsive {
+                display: flex;
+                width: 100%;
+                height: 60px;
+                border-bottom: 1px solid #dbdbdb;
+            }
+
+            .responsive {
+                display: flex;
+                align-items: center;
+                width: inherit;
+                height: inherit;
+            }
+
+            .header-responsive ul {
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                padding: 0px;
+            }
+
+            .header-responsive ul li {
+                list-style: none;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header-responsive ul li a {
+                text-decoration: none;
+                color: black;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header-responsive ul li span {
+                font-weight: 600;
+            }
+
+            .post-list {
+                grid-gap: 3px;
+            }
+
+            .footer-section {
+                width: 100%;
+            }
+
+            .footer-section ul {
+                width: 60%;
+                height: inherit;
+                margin: 0 auto;
+                display: flex;
+                justify-content: center;
+                align-content: space-around;
+                flex-wrap: wrap;
+            }
+
+            .footer-section span {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="navbar">
+        <div class="navbar-content">
+            <div class="logo"><a href=""><img src="./assets/logo.png" alt=""></a></div>
+            <div class="search"><button><i class="fas fa-search"></i>Buscar</button></div>
+            <div class="menu">
+                <a href="" class="menu-img home"></a>
+                <a href="" class="menu-img dm"></a>
+                <a href="" class="menu-img explore"></a>
+                <a href="" class="menu-img activity"></a>
+                <a href="" class="menu-img profile"></a>
+            </div>
+        </div>
+    </section>
+    <section class="header">
+        <div class="header-content">
+            <div class="profile-img">
+                <figure>
+                    <img src="./assets/profile.jpg" alt="Profile image">
+                </figure>
+            </div>
+            <div class="profile-info">
+                <div class="profile-info-user">
+                    <h2>danielm_6fu</h2>
+                    <a href="">Editar perfil</a>
+                    <figure>
+                        <img src="./assets/settings.png" alt="Settings">
+                    </figure>
+                </div>
+                <div class="profile-info-edit">
+                    <a href="">Editar perfil</a>
+                </div>
+                <div class="profile-info-follows">
+                    <ul>
+                        <li><span>23</span> publicaciones</li>
+                        <li><a href=""><span>117</span> seguidores</a></li>
+                        <li><a href=""><span>146</span> seguidos</a></li>
+                    </ul>
+                </div>
+                <div class="profile-info-description">
+                    <h1>Daniel Moreno</h1>
+                    <span>
+                        Millonarios Fútbol Club &#128309 ⚪ <br>
+                        Club Atlético River Plate ⚪ &#128308 ⚪ <br>
+                        Ingeniería de sistemas • UD.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="header-responsive">
+        <div class="responsive">
+            <ul>
+                <li><span>23</span>publicaciones</li>
+                <li><a href=""><span>117</span>seguidores</a></li>
+                <li><a href=""><span>146</span>seguidos</a></li>
+            </ul>
+        </div>
+    </section>
+    <section class="sections">
+        <a href=""><span class="sections-icon"><img src="./assets/grid.png" alt=""></span><span
+                class="sections-text">PUBLICACIONES</span></a>
+        <a href=""><span class="sections-icon"><img src="./assets/igtv.png" alt=""></span><span
+                class="sections-text">IGTV</span></a>
+        <a href=""><span class="sections-icon"><img src="./assets/saved.png" alt=""></span><span
+                class="sections-text">GUARDADO</span></a>
+        <a href=""><span class="sections-icon"><img src="./assets/tagged.png" alt=""></span><span
+                class="sections-text">ETIQUETADAS</span></a>
+    </section>
+    <section class="post-list">
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/1.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/2.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/3.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/4.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/5.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/6.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/7.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/8.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/9.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/10.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/11.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/12.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/13.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/14.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/15.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/16.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/17.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/18.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/19.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/20.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/21.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/22.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+        <a href="" class="post">
+            <figure class="post-image">
+                <img loading="lazy" src="./assets/23.jpg" alt="imagen">
+            </figure>
+            <span class="post-overlay">
+                <p>
+                    <span class="post-likes"><i class="fas fa-heart"></i> 130</span>
+                    <span class="post-comments"><i class="fas fa-comment"></i> 20</span>
+                </p>
+            </span>
+        </a>
+    </section>
+    <footer>
+        <div class="footer-section">
+            <ul>
+                <li><a href="">INFORMACIÓN</a></li>
+                <li><a href="">AYUDA</a></li>
+                <li><a href="">PRENSA</a></li>
+                <li><a href="">API</a></li>
+                <li><a href="">EMPLEO</a></li>
+                <li><a href="">PRIVACIDAD</a></li>
+                <li><a href="">CONDICIONES</a></li>
+                <li><a href="">UBICACIONES</a></li>
+                <li><a href="">CUENTAS DESTACADAS</a></li>
+                <li><a href="">HASTAGS</a></li>
+                <li><a href="">IDIOMA</a></li>
+            </ul>
+            <span>©2020 Daniel Moreno</span>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso CSS Grid Layout</title>
+    <style>
+        .projects {
+            display: grid;
+            width: 60%;
+            height: 100%;
+            margin: 10% auto;
+            align-items: center;
+        }
+
+        .grid-projects {
+            display: grid;
+            grid-template: 1fr 2fr / repeat(3, 1fr);
+            border: 2px solid #3C493F;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 10px 7px 30px 5px black;
+        }
+
+        .title {
+            grid-column: 1 / -1;
+            justify-self: center;
+        }
+
+        .project {
+            display: grid;
+            justify-content: center;
+            align-content: center;
+            border-right: 2px solid #3C493F;
+            border-top: 2px solid #3C493F;
+            overflow: hidden;
+        }
+
+        .project:last-child {
+            border-right: none
+        }
+
+        .project-text {
+            text-decoration: none;
+            color: #3C493F;
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        @media screen and (max-width: 660px) {
+
+            .projects {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body style="background-color: #A2E3C4; font-family: Arial, Helvetica, sans-serif;">
+    <section class="projects">
+        <div class="grid-projects">
+            <div class="title">
+                <h1>Proyectos CSS Grid Layout</h1>
+            </div>
+            <div class="project">
+                <a href="./proyectos/instagram/instagram.html" class="project-text">Instagram</a>
+            </div>
+            <div class="project">
+                <a href="./proyectos/pinterest/pinterest.html" class="project-text">Pinterest</a>
+            </div>
+            <div class="project">
+                <a href="./proyectos/platzi/platzi.html" class="project-text">Platzi</a>
+            </div>
+        </div>
+    </section>
+</body>
+
+</html>
