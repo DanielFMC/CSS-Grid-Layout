@@ -18,4 +18,4 @@ Here are the previews of the projects done.
 
 ---
 
-You can see the projects following this [link]()
+You can see the projects following this [link](https://danielfmc.github.io/CSS-Grid-Layout/)
