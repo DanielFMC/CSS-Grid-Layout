@@ -16,6 +16,10 @@ Here are the previews of the projects done.
 
 ![Pinterest](./proyectos/pinterest/assets/preview.png "Pinterest")
 
+## Platzi
+
+![Platzi](./proyectos/platzi/assets/preview.png "Platzi")
+
 ---
 
 You can see the projects following this [link](https://danielfmc.github.io/CSS-Grid-Layout/)

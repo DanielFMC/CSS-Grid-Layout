@@ -5,29 +5,167 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Platzi</title>
+    <link rel="shortcut icon" href="./assets/platzi_favicon.png" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/efe15c9ec8.js" crossorigin="anonymous"></script>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
     <style>
         body {
             font-family: 'Lato', sans-serif;
             margin: 0px;
         }
 
+        /* --- NAVBAR --- */
+
+        .navbar-platzi {
+            background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
+            box-sizing: border-box;
+            height: 52px;
+            width: 100%;
+            display: flex;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25);
+            position: absolute;
+            top: 0;
+            z-index: 1;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-logo a img {
+            height: 40px;
+            width: 100px;
+        }
+
+        .nav-menu {
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr auto auto auto;
+            grid-gap: 15px;
+        }
+
+        .menu-options {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .menu-options ul {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0px 12px;
+            margin: 0;
+            height: inherit;
+            list-style: none;
+        }
+
+        .menu-options::after {
+            content: "|";
+            font-size: 30px;
+            font-weight: 100;
+            color: white;
+        }
+
+        .menu-options ul li {
+            padding: 0px 12px 0px 5px;
+            font-size: 14px;
+            font-weight: 700;
+            color: white;
+        }
+
+        .menu-plan {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-plan a::before {
+            content: "Iniciar mi plan ";
+        }
+
+        .menu-plan a {
+            font-size: 14px;
+            color: white;
+            text-decoration: none;
+        }
+
+        .menu-plan a i {
+            font-size: 12px;
+        }
+
+        .menu-login {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu-login button {
+            border: none;
+            border-radius: 3px;
+            font-size: 13px;
+            height: 30px;
+            width: 95px;
+            background-color: #93ca3d;
+            color: white;
+        }
+
+        .menu-search {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group {
+            margin-right: 20px;
+        }
+
+        .input-group>.form-control {
+            width: 230px;
+        }
+
+        .form-control {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .input-group-text {
+            background-color: #93ca3d;
+            color: white;
+            font-size: 12px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        /* --- HERO --- */
+
         .hero {
-            background: #23475b;
+            background: linear-gradient(90deg, #1c3643 0, #273b47 25%, #1e5372);
             color: white;
             padding: 32px 15px;
             display: grid;
             grid-template-columns: minmax(auto, 1024px);
             justify-content: center;
+            padding-top: 85px;
         }
 
         .hero-container {
             display: grid;
-            grid-template-columns: 70px 1fr 320px;
+            grid-template-columns: 70px 1fr 380px;
+            grid-auto-rows: 70px auto auto;
             grid-template-areas: "badge title form"
                 ". description form"
                 ". countdown form";
-            grid-gap: 10px;
+            grid-gap: 20px;
 
         }
 
@@ -42,14 +180,22 @@
         .title {
             grid-area: title;
             font-size: 36px;
-            font-weight: normal;
+            font-weight: 900;
             margin: 0;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .title a {
+            font-size: 16px;
+            font-weight: 400;
+            text-decoration: underline;
         }
 
         .description {
             grid-area: description;
+            padding-right: 50px;
         }
 
         .form {
@@ -62,18 +208,20 @@
 
         .form input {
             width: 100%;
+            height: 60px;
             padding: 10px;
             font-size: 16px;
             border: 1px solid #dbbde2;
             border-radius: 5px;
             box-sizing: border-box;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .form p {
             font-size: 20px;
             color: #3a3b3f;
             margin-bottom: 1em;
+            font-weight: 700;
         }
 
         .form button {
@@ -85,6 +233,7 @@
             font-size: 16px;
             border-bottom: 5px solid #6d932b;
             display: inline-block;
+            width: 100%;
         }
 
         .countdown {
@@ -115,19 +264,197 @@
             margin: 0;
         }
 
-        @media screen and (max-width: 768px) {
+        /* --- SUMMARY --- */
+
+        .summary {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 30px 80px 0px 80px;
+        }
+
+        h3 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 24px;
+        }
+
+        .summary-cards {
+            align-self: flex-start;
+            display: flex;
+        }
+
+        .summary-cards .card {
+            width: 395px;
+            height: 75px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 10px;
+            border: none;
+            margin-top: 24px;
+        }
+
+        .summary-cards .card img {
+            width: 70px;
+            height: 70px;
+            margin-right: 10px;
+        }
+
+        .summary-cards .card p {
+            line-height: 1;
+        }
+
+        /* --- CAREERS */
+
+        .careers {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0px 75px;
+            margin-bottom: 30px;
+        }
+
+        .careers-cards {
+            align-self: flex-start;
+        }
+
+        .careers-cards .card {
+            width: 380px;
+            height: 52px;
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding: 0 8px;
+            cursor: pointer;
+            border-left: 4px solid #00883d;
+        }
+
+        .careers-cards .card img {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+        }
+
+        .careers-cards .card a {
+            text-decoration: none;
+            color: #231f20;
+            font-weight: bold;
+        }
+
+        /* --- RESPONSIVE */
+
+        @media screen and (max-width: 1023px) {
+            .menu-plan a::before {
+                content: "Planes ";
+            }
+
+            .input-group>.form-control {
+                display: none;
+            }
+
+            .input-group-text {
+                background-color: transparent;
+                border: none;
+            }
+
             .hero-container {
                 grid-template-columns: 70px 1fr;
+                grid-auto-rows: auto auto auto;
                 grid-template-areas: "badge title"
                     "description description"
                     "form form"
                     "countdown countdown";
+                width: 85%;
+                margin: auto;
+            }
+
+            .summary {
+                margin: 30px 10px 0px 10px;
+            }
+
+            .summary-cards .card {
+                width: 50%;
+            }
+
+            .summary-cards .card img {
+                width: 50px;
+                height: 50px;
+            }
+
+            .careers {
+                margin: 0 15px 0 8px;
+                margin-bottom: 30px;
+            }
+        }
+
+        @media screen and (max-width: 767px) {
+            .nav-menu {
+                grid-template-columns: auto auto auto;
+                justify-content: end;
+            }
+
+            .menu-options {
+                display: none;
+            }
+
+            .hero-container {
+                width: 95%;
+            }
+
+            .title {
+                font-size: 28px;
+            }
+
+            .summary-cards {
+                display: block;
+            }
+
+            .summary-cards .card {
+                height: 55px;
+                width: 100%;
+                margin-top: 5px;
+            }
+
+            .careers-cards {
+                width: 100%;
+            }
+
+            .careers-cards .card {
+                width: 100%;
             }
         }
     </style>
 </head>
 
 <body>
+    <nav class="navbar-platzi">
+        <div class="nav-logo">
+            <a href=""><img src="./assets/logo.png" alt="Platzi logo"></a>
+        </div>
+        <div class="nav-menu">
+            <div class="menu-options">
+                <ul>
+                    <li>Cursos</li>
+                    <li>Blog</li>
+                    <li>Foro</li>
+                    <li>Agenda</li>
+                    <li>TV</li>
+                    <li>Contáctanos</li>
+                </ul>
+            </div>
+            <div class="menu-plan"><a href=""><i class="fas fa-chevron-down"></i></a></div>
+            <div class="menu-login"><button type="submit">Iniciar sesión</button></div>
+            <div class="menu-search">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Buscar en Platzi">
+                    <div class="input-group-append">
+                        <span class="input-group-text" id="basic-addon2"><i class="fas fa-search"></i></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
     <div class="hero">
         <div class="hero-container">
             <div class="badge">
@@ -135,17 +462,18 @@
             </div>
             <h1 class="title">
                 Curso de React.js
+                <a href="">Leer más opiniones (1054)</a>
             </h1>
             <div class="description">
                 <p>React es una de las librerías más utilizadas hoy en día para crear aplicaciones web. En este curso
-                    podrás
-                    dominar la creación de aplicaciones a través de un proyecto que te ayudará a explotar todas las
-                    capacidades de esta librería.</p>
+                    podrás dominar la creación de aplicaciones a través de un proyecto que te ayudará a explotar todas
+                    las capacidades de esta librería.</p>
             </div>
             <form action="" class="form">
-                <p>Regístarte a Platzi</p>
+                <p>Contáctanos para saber más</p>
                 <input type="text" placeholder="Nombre">
                 <input type="email" placeholder="Correo electrónico">
+                <input type="text" placeholder="Número móvil">
                 <button type="submit">Comienza ahora</button>
             </form>
             <div class="countdown">
@@ -156,6 +484,32 @@
                     <span>26m</span>
                     <span>01s</span>
                 </p>
+            </div>
+        </div>
+    </div>
+    <div class="summary">
+        <h3>
+            Con este curso podrás:
+        </h3>
+        <div class="summary-cards">
+            <div class="card">
+                <img src="./assets/react_1.png" alt="Card-image">
+                <p>Comprender a fondo el concepto de reactividad manejado por React</p>
+            </div>
+            <div class="card">
+                <img src="./assets/producto.png" alt="Card-image">
+                <p>Llevar a producción un proyecto desarrollado con React a partir de un mockup</p>
+            </div>
+        </div>
+    </div>
+    <div class="careers">
+        <h3>
+            Este curso forma parte de:
+        </h3>
+        <div class="careers-cards">
+            <div class="card">
+                <img src="./assets/62.png" alt="Card-image">
+                <a href="">Frontend con Reac.js</a>
             </div>
         </div>
     </div>
